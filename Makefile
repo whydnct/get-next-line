@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aperez-m <aperez-m@student.42urduliz.co    +#+  +:+       +#+         #
+#    By: aperez-m <aperez-m@student.42urduliz.com>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/02 13:31:05 by aperez-m          #+#    #+#              #
-#    Updated: 2022/12/23 11:29:50 by aperez-m         ###   ########.fr        #
+#    Updated: 2022/12/23 22:59:26 by aperez-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
