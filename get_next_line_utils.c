@@ -6,7 +6,7 @@
 /*   By: aperez-m <aperez-m@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 10:33:22 by aperez-m          #+#    #+#             */
-/*   Updated: 2022/12/23 23:06:42 by aperez-m         ###   ########.fr       */
+/*   Updated: 2022/12/24 07:55:48 by aperez-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,11 +87,17 @@ char	*ft_strchr(const char *s, int c)
 	return (NULL);
 }
 
-char	*fill_temp_stash(int fd, char *temp_stash)
+char	*fill_temp_stash(int fd)
 {
-	char	*buff;
-	int		chars_read;
+	char		*buff;
+	int			chars_read;
+	static char	*temp_stash;
 
+	if (temp_stash == NULL)
+	{
+		temp_stash = malloc(BUFFER_SIZE + 1);
+		temp_stash[BUFFER_SIZE] = '\0';
+	}
 	printf("Entrada en fill | %s | \n", temp_stash);
 	buff = malloc(BUFFER_SIZE + 1);
 	if (buff == NULL)

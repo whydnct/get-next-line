@@ -6,7 +6,7 @@
 /*   By: aperez-m <aperez-m@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 10:33:32 by aperez-m          #+#    #+#             */
-/*   Updated: 2022/12/23 22:53:39 by aperez-m         ###   ########.fr       */
+/*   Updated: 2022/12/24 07:51:08 by aperez-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,6 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 size_t	ft_strlcat(char *dst, const char *src, size_t size);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strchr(const char *s, int c);
-char	*fill_temp_stash(int fd, char *temp_stash);
+char	*fill_temp_stash(int fd);
 int	main(int argc, char **argv);
 #endif
