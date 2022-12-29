@@ -6,7 +6,7 @@
 /*   By: aperez-m <aperez-m@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 10:33:22 by aperez-m          #+#    #+#             */
-/*   Updated: 2022/12/29 18:56:24 by aperez-m         ###   ########.fr       */
+/*   Updated: 2022/12/29 19:12:38 by aperez-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,12 +111,12 @@ char	*trim_temp_stash(char *temp_stash)
 		return (NULL);
 	}
 	newline_i = i;
-	ret_len = ft_strlen(temp_stash) - newline_i;
-	ret = malloc(ret_len);
+	ret_len = ft_strlen(temp_stash) - newline_i - 1;
+	ret = malloc(ret_len + 1);
 	if (ret == NULL)
 		return (NULL);
 	i = -1;
-	while (++i < ret_len - 1)
+	while (++i < ret_len)
 		ret[i] = temp_stash[newline_i + 1 + i];
 	ret[i] = 0;
 	free(temp_stash);
