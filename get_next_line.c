@@ -6,7 +6,7 @@
 /*   By: aperez-m <aperez-m@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 10:32:45 by aperez-m          #+#    #+#             */
-/*   Updated: 2022/12/26 12:35:58 by aperez-m         ###   ########.fr       */
+/*   Updated: 2022/12/29 21:53:52 by aperez-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ char	*fill_temp_stash(int fd, char *temp_stash)
 		if (chars_read == -1)
 		{
 			free (buff);
+			free (temp_stash);
 			return (NULL);
 		}
 		buff[chars_read] = '\0';
