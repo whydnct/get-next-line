@@ -6,115 +6,119 @@
 /*   By: aperez-m <aperez-m@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 10:33:22 by aperez-m          #+#    #+#             */
-/*   Updated: 2022/12/23 23:06:42 by aperez-m         ###   ########.fr       */
+/*   Updated: 2022/12/29 18:56:24 by aperez-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t	ft_strlen(const char *str)
+size_t	ft_strlen(char *str)
 {
 	size_t	i;
 
 	i = 0;
+	if (!str)
+		return (0);
 	while (str[i])
 		i++;
 	return (i);
 }
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+char	*ft_strjoin(char *temp_stash, char *buff)
 {
 	size_t	i;
+	size_t	j;
+	char	*ret;
 
-	i = 0;
-	if (dstsize)
+	if (!temp_stash)
 	{
-		while ((i < (dstsize - 1)) && src[i])
-		{
-			dst[i] = src[i];
-			i++;
-		}
-		dst[i] = 0;
+		temp_stash = malloc(1);
+		temp_stash[0] = '\0';
 	}
-	return (ft_strlen((char *)src));
-}
-
-size_t	ft_strlcat(char *dst, const char *src, size_t size)
-{
-	size_t	i;
-	size_t	dst_l;
-
-	i = 0;
-	dst_l = ft_strlen(dst);
-	if (dst_l >= size)
-		return (size + ft_strlen((char *)src));
-	while ((i < size - dst_l - 1) && src[i])
-	{
-		dst[dst_l + i] = src[i];
-		i++;
-	}
-	dst[dst_l + i] = 0;
-	return (dst_l + ft_strlen((char *)src));
-}
-
-char	*ft_strjoin(char const *s1, char const *s2)
-{
-	char	*s;
-	size_t	len;
-
-	len = ft_strlen(s1) + ft_strlen(s2);
-	s = malloc(len + 1);
-	if (s == NULL)
+	if (!temp_stash || !buff)
 		return (NULL);
-	ft_strlcpy(s, s1, len + 1);
-	ft_strlcat(s, s2, len +1);
-	return (s);
+	ret = malloc((ft_strlen(temp_stash) + ft_strlen(buff)) + 1);
+	if (ret == NULL)
+		return (NULL);
+	i = -1;
+	j = 0;
+	if (temp_stash)
+		while (temp_stash[++i] != '\0')
+			ret[i] = temp_stash[i];
+	while (buff[j] != '\0')
+		ret[i++] = buff[j++];
+	ret[ft_strlen(temp_stash) + ft_strlen(buff)] = '\0';
+	free(temp_stash);
+	return (ret);
 }
 
-char	*ft_strchr(const char *s, int c)
+char	*ft_strchr(char *s, int c)
 {
 	int	i;
-	int	l;
 
-	l = ft_strlen((char *)s);
+	if (!s)
+		return (NULL);
 	i = 0;
-	while (i <= l)
+	while (s[i])
 	{
 		if (s[i] == (unsigned char)c)
-			return ((char *)s + i);
+			return (s + i);
 		i++;
 	}
 	return (NULL);
 }
 
-char	*fill_temp_stash(int fd, char *temp_stash)
+char	*fill_ret(char *s)
 {
-	char	*buff;
-	int		chars_read;
+	char	*ret;
+	int		i;
+	int		l_max;
 
-	printf("Entrada en fill | %s | \n", temp_stash);
-	buff = malloc(BUFFER_SIZE + 1);
-	if (buff == NULL)
+	i = 0;
+	if (!*s)
 		return (NULL);
-	chars_read = read(fd, buff, BUFFER_SIZE);
-	if (chars_read == 0)
+	while (s[i] != '\n' && s[i])
+		i++;
+	l_max = i;
+	ret = malloc(l_max + 2);
+	if (ret == NULL)
 		return (NULL);
-	else
+	i = -1;
+	while (++i < l_max)
+		ret[i] = s[i];
+	if (s[i] == '\n')
 	{
-		buff[chars_read] = '\0';
-		while (chars_read)
-		{
-			temp_stash = ft_strjoin(temp_stash, buff);
-			printf("Entrada en bucle | %s | \n", temp_stash);
-			if (ft_strchr(temp_stash, '\n'))
-			{
-				free (buff);
-				return (temp_stash);
-			}
-			chars_read = read(fd, buff, BUFFER_SIZE);
-			buff[chars_read] = '\0';
-		}
-		free (buff);
-		return (temp_stash);
+		ret[i] = '\n';
+		i++;
 	}
+	ret[i] = 0;
+	return (ret);
+}
+
+char	*trim_temp_stash(char *temp_stash)
+{
+	char	*ret;
+	int		ret_len;
+	int		newline_i;
+	int		i;
+
+	i = 0;
+	while (temp_stash[i] && temp_stash[i] != '\n')
+		i++;
+	if (!temp_stash[i])
+	{
+		free(temp_stash);
+		return (NULL);
+	}
+	newline_i = i;
+	ret_len = ft_strlen(temp_stash) - newline_i;
+	ret = malloc(ret_len);
+	if (ret == NULL)
+		return (NULL);
+	i = -1;
+	while (++i < ret_len - 1)
+		ret[i] = temp_stash[newline_i + 1 + i];
+	ret[i] = 0;
+	free(temp_stash);
+	return (ret);
 }
