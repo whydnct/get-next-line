@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aperez-m <aperez-m@student.42urduliz.com>  +#+  +:+       +#+        */
+/*   By: aperez-m <aperez-m@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 10:33:22 by aperez-m          #+#    #+#             */
-/*   Updated: 2022/12/29 19:18:14 by aperez-m         ###   ########.fr       */
+/*   Updated: 2023/01/03 18:20:04 by aperez-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
