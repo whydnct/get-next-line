@@ -1,15 +1,21 @@
+#include <stdio.h>
+#include <fcntl.h>
+#include <stdlib.h>
 #include "get_next_line.h"
 
-int	main(int argc, char **argv)
+int main(int argc, char** argv)
 {
-	static char	*temp_stash;
-	int			fd;
+    int fd;
+    int lines;
+    int i;
 
-	temp_stash = malloc(BUFFER_SIZE + 1);
-	temp_stash[BUFFER_SIZE] = '\n';
-	fd = open(argv[1], O_RDONLY);
-	(void)argc;
-	printf("%s", fill_temp_stash(fd, temp_stash));
-	printf("Entre prints %s \n", temp_stash);
-	printf("%s", fill_temp_stash(fd, temp_stash));
+    (void)argc;
+    lines = atoi(argv[2]);
+    i = 0;
+    fd = open(argv[1], O_RDONLY);
+    while (i < lines)
+    {
+        printf("%s", get_next_line(fd));
+        i++;
+    }
 }
